@@ -5,13 +5,14 @@ namespace Model\User;
 use Model\DB;
 use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
+use Model\Manager\RoleManager;
 
 class UserManager {
 
     use ManagerTrait;
 
     /**
-     * Retourne un utilisateur via son id.
+     * Return an User by his id
      * @param int $id
      * @return User
      */
@@ -28,6 +29,37 @@ class UserManager {
                 $user->setUsername($user_data['username']);
             }
         }
+
         return $user;
+    }
+
+    /**
+     * Return an User by his user name or null
+     * @param string $username
+     * @return User|null
+     */
+    public function log(string $username): ?User {
+        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE username = :username");
+        $request->bindValue(':username', $username);
+        $result = $request->execute();
+        $user = null;
+
+        if($result && $data = $request->fetch()) {
+            $role = RoleManager::getManager()->get($data['role_fk']);
+            $user = new User($data['username'], $data['password'], $data['id'], $data['mail'], $role);
+        }
+
+        return $user;
+    }
+
+    public function add(User $user): bool {
+        $request = DB::getInstance()->prepare("INSERT INTO user (username, mail, password, role_fk) VALUES (:username, :mail, :password, :role)");
+
+        $request->bindValue(":username", $user->getUsername());
+        $request->bindValue(":mail", $user->getMail());
+        $request->bindValue(":password", $user->getPassword());
+        $request->bindValue(":role", $user->getRole()->getId());
+
+        return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 }

@@ -4,16 +4,14 @@ namespace Model\Manager;
 
 
 use Model\Entity\Article;
-use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 use Model\DB;
-use Model\User\UserManager;
 
 class ArticleManager {
     use ManagerTrait;
 
     /**
-     * Retourne tous les articles.
+     * Return all article
      */
     public function getAll(): array {
         $articles = [];
@@ -22,29 +20,68 @@ class ArticleManager {
         if($result) {
             $data = $request->fetchAll();
             foreach ($data as $article_data) {
-                $user = UserManager::getManager()->getById($article_data['user_fk']);
-                if($user->getId()) {
-                    $articles[] = new Article($article_data['content'], $user, $article_data['id']);
-                }
+                $articles[] = new Article($article_data['content'], $article_data['id']);
             }
         }
         return $articles;
     }
 
     /**
-     * Add an article into the database.
+     * Return an Article or null
+     * @param $id
+     * @return Article
+     */
+    public function get($id): ?Article {
+        $request = DB::getInstance()->prepare("SELECT * FROM article WHERE id = :id");
+        $request->bindValue(':id', $id);
+        $result = $request->execute();
+        $article = null;
+
+        if($result && $data = $request->fetch()) {
+            $article = new Article($data['content'], $data['id']);
+        }
+
+        return $article;
+    }
+
+    /**
+     * Add an article into the database
      * @param Article $article
      * @return bool
      */
-    public function add(Article $article) {
+    public function add(Article $article): bool {
         $request = DB::getInstance()->prepare("
-            INSERT INTO article (content, user_fk)
-                VALUES (:content, :ufk) 
+            INSERT INTO article (content)
+                VALUES (:content) 
         ");
-
         $request->bindValue(':content', $article->getContent());
-        $request->bindValue(':ufk', $article->getUser()->getId());
+
+        return $request->execute() && DB::getInstance()->lastInsertId() != 0;
+    }
+
+    /**
+     * Update an article into the database
+     * @param Article $article
+     * @return bool
+     */
+    public function update(Article $article): bool {
+        $request = DB::getInstance()->prepare("UPDATE article SET content = :content WHERE id = :id");
+        $request->bindValue(':content', $article->getContent());
+        $request->bindValue(':id', $article->getId());
+
+        return $request->execute() && DB::getInstance()->lastInsertId() != 0;
+    }
+
+    /**
+     * Delete an article into the database
+     * @param Article $article
+     * @return bool
+     */
+    public function delete(Article $article): bool {
+        $request = DB::getInstance()->prepare("DELETE FROM article WHERE id = :id");
+        $request->bindValue(':id', $article->getId());
 
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 }
+

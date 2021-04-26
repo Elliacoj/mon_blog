@@ -14,10 +14,9 @@ class Article {
      * @param string $content
      * @param User $user
      */
-    public function __construct(string $content, User $user, int $id= null) {
+    public function __construct(string $content, int $id= null) {
         $this->id = $id;
         $this->content = $content;
-        $this->user = $user;
     }
 
     /**

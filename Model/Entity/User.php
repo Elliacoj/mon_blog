@@ -92,10 +92,10 @@ class User {
 
     /**
      * Return the role of User
-     * @return string
+     * @return Role
      */
-    public function getRole(): string {
-        return $this->role->getName();
+    public function getRole(): Role {
+        return $this->role;
     }
 
     /**
