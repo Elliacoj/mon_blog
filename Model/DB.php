@@ -15,7 +15,7 @@ class DB {
         $server = 'localhost';
         $user = 'root';
         $password = '';
-        $database = 'live_patterns';
+        $database = 'mon_blog';
 
         try {
             self::$dbInstance = new PDO("mysql:host=$server;dbname=$database;charset=utf8", $user, $password);

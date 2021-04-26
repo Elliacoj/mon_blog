@@ -69,7 +69,7 @@ class ArticleManager {
         $request->bindValue(':content', $article->getContent());
         $request->bindValue(':id', $article->getId());
 
-        return $request->execute() && DB::getInstance()->lastInsertId() != 0;
+        return $request->execute();
     }
 
     /**
@@ -81,7 +81,7 @@ class ArticleManager {
         $request = DB::getInstance()->prepare("DELETE FROM article WHERE id = :id");
         $request->bindValue(':id', $article->getId());
 
-        return $request->execute() && DB::getInstance()->lastInsertId() != 0;
+        return $request->execute();
     }
 }
 

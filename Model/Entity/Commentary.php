@@ -8,20 +8,27 @@ class Commentary {
     private ?int $id;
     private ?string $content;
     private ?User $user_fk;
+    private ?Article $article_fk;
     private ?string $date;
+    private ?int $edit;
+
 
     /**
      * Commentary constructor.
      * @param int|null $id
      * @param string|null $content
      * @param User|null $user_fk
+     * @param Article|null $article_fk
      * @param string|null $date
+     * @param int|null $edit
      */
-    public function __construct(int $id = null, string $content = null, User $user_fk = null, string $date = null) {
+    public function __construct(int $id = null, string $content = null, User $user_fk = null, Article $article_fk = null, string $date = null, int $edit = null) {
         $this->id = $id;
         $this->content = $content;
         $this->user_fk = $user_fk;
+        $this->article_fk = $article_fk;
         $this->date = $date;
+        $this->edit = $edit;
     }
 
     /**
@@ -83,6 +90,42 @@ class Commentary {
      */
     public function setDate(?string $date): Commentary {
         $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * Return the Article of Commentary
+     * @return Article|null
+     */
+    public function getArticleFk(): ?Article {
+        return $this->article_fk;
+    }
+
+    /**
+     * Set the Article of Commentary
+     * @param Article|null $article_fk
+     * @return Commentary
+     */
+    public function setArticleFk(?Article $article_fk): Commentary {
+        $this->article_fk = $article_fk;
+        return $this;
+    }
+
+    /**
+     * Return the information of edit of Commentary
+     * @return int|null
+     */
+    public function getEdit(): ?int {
+        return $this->edit;
+    }
+
+    /**
+     * Set the information of edit of Commentary
+     * @param int|null $edit
+     * @return Commentary
+     */
+    public function setEdit(?int $edit): Commentary {
+        $this->edit = $edit;
         return $this;
     }
 
