@@ -20,7 +20,7 @@ class ArticleManager {
         if($result) {
             $data = $request->fetchAll();
             foreach ($data as $article_data) {
-                $articles[] = new Article($article_data['content'], $article_data['id']);
+                $articles[] = new Article($article_data['content'], $article_data['id'], $article_data['title'], $article_data['subTitle'], $article_data['resume'], $article_data['date']);
             }
         }
         return $articles;
@@ -38,7 +38,7 @@ class ArticleManager {
         $article = null;
 
         if($result && $data = $request->fetch()) {
-            $article = new Article($data['content'], $data['id']);
+            $article = new Article($data['content'], $data['id'], $data['title'], $data['subTitle'], $data['resume'], $data['date']);
         }
 
         return $article;
@@ -51,10 +51,13 @@ class ArticleManager {
      */
     public function add(Article $article): bool {
         $request = DB::getInstance()->prepare("
-            INSERT INTO article (content)
-                VALUES (:content) 
+            INSERT INTO article (content, title, subTitle, resume)
+                VALUES (:content, :title, :subTitle, :resume) 
         ");
         $request->bindValue(':content', $article->getContent());
+        $request->bindValue(':title', $article->getTitle());
+        $request->bindValue(':subTitle', $article->getSubTitle());
+        $request->bindValue(':resume', $article->getResume());
 
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
@@ -65,8 +68,11 @@ class ArticleManager {
      * @return bool
      */
     public function update(Article $article): bool {
-        $request = DB::getInstance()->prepare("UPDATE article SET content = :content WHERE id = :id");
+        $request = DB::getInstance()->prepare("UPDATE article SET content = :content, title = :tile, subTitle = :subTitle, resume = :resume WHERE id = :id");
         $request->bindValue(':content', $article->getContent());
+        $request->bindValue(':title', $article->getTitle());
+        $request->bindValue(':subTitle', $article->getSubTitle());
+        $request->bindValue(':resume', $article->getResume());
         $request->bindValue(':id', $article->getId());
 
         return $request->execute();

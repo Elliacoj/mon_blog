@@ -8,7 +8,17 @@
     <title><?= $title ?></title>
 </head>
 <body>
+<?php
+    if(isset($_SESSION['id'])) {
+        include $_SERVER['DOCUMENT_ROOT'] . "/View/_partials/menuLog.view.php";
+    }
+    else {
+        include $_SERVER['DOCUMENT_ROOT'] . "/View/_partials/menuUnlog.view.php";
+    }
+?>
     <?= $html ?>
+
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>
 

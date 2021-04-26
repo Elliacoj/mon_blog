@@ -21,9 +21,11 @@ require_once './Model/Manager/RoleManager.php';
 
 require_once './Controller/HomeController.php';
 require_once './Controller/ArticleController.php';
+require_once './Controller/UserController.php';
 
 use Controller\HomeController;
 use Controller\ArticleController;
+use Controller\UserController;
 
 // Soit l'url contient le paramètre controller ( $_GET['controller'] => http://localhost?controller=MonSuperController.
 if(isset($_GET['controller'])) {
@@ -50,7 +52,20 @@ if(isset($_GET['controller'])) {
             }
 
             break;
+        case 'user':
+            $controller = new UserController();
 
+            if(isset($_GET['action'])) {
+                switch ($_GET['action']) {
+                    case 'login':
+                        $controller->login();
+                        break;
+                    case 'create':
+                        $controller->create();
+                        break;
+                }
+            }
+            break;
         default:
             // Éventuellement, afficher une page 404 not found. Car le controller n'existe pas !
             break;

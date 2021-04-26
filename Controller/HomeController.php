@@ -9,7 +9,7 @@ class HomeController {
     use RenderViewTrait;
 
     /**
-     * Affiche la page home.
+     * Poster home page
      */
     public function homePage() {
         $user = 'Anonymous';
