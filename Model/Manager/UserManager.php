@@ -35,12 +35,12 @@ class UserManager {
 
     /**
      * Return an User by his user name or null
-     * @param string $username
+     * @param string $mail
      * @return User|null
      */
-    public function log(string $username): ?User {
-        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE username = :username");
-        $request->bindValue(':username', $username);
+    public function log(string $mail): ?User {
+        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE mail = :mail");
+        $request->bindValue(':mail', $mail);
         $result = $request->execute();
         $user = null;
 

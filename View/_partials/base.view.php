@@ -15,6 +15,8 @@
     else {
         include $_SERVER['DOCUMENT_ROOT'] . "/View/_partials/menuUnlog.view.php";
     }
+
+    include $_SERVER['DOCUMENT_ROOT'] . "/View/_partials/error.view.php";
 ?>
     <?= $html ?>
 
