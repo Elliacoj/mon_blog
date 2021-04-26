@@ -21,6 +21,7 @@ class Article {
     }
 
     /**
+     * Return the id of article
      * @return int|null
      */
     public function getId(): ?int {
@@ -28,37 +29,19 @@ class Article {
     }
 
     /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void {
-        $this->id = $id;
-    }
-
-    /**
+     * Return the content of article
      * @return string
      */
-    public function getContent(): string {
+    public function getContent(): ?string {
         return $this->content;
     }
 
     /**
+     * Set the content of article
      * @param string $content
      */
-    public function setContent(string $content): void {
+    public function setContent(string $content): Article {
         $this->content = $content;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(): User {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user): void {
-        $this->user = $user;
+        return $this;
     }
 }
