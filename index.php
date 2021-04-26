@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['user'] = 'John Doe';
 
 // Un controller chope ce que l'utilisateur cherche à faire ( données entrées, etc.... )
 // Il interragit avec le modèle ( adéquat )
@@ -12,9 +11,13 @@ require_once './Controller/Traits/RenderViewTrait.php';
 
 require_once './Model/Entity/User.php';
 require_once './Model/Entity/Article.php';
+require_once './Model/Entity/Role.php';
+require_once './Model/Entity/Commentary.php';
 
 require_once './Model/Manager/ArticleManager.php';
 require_once './Model/Manager/UserManager.php';
+require_once './Model/Manager/CommentaryManager.php';
+require_once './Model/Manager/RoleManager.php';
 
 require_once './Controller/HomeController.php';
 require_once './Controller/ArticleController.php';
@@ -54,7 +57,7 @@ if(isset($_GET['controller'])) {
     }
 }
 else {
-    // Si le paramètre cxontroller ne se trouve pas dans l'url, alors la page 'home' doit être affichée.
+    // Si le paramètre controller ne se trouve pas dans l'url, alors la page 'home' doit être affichée.
     // Donc on part sur le Home controller en demandant d'afficher la home page.
     $controller = new HomeController();
     $controller->homePage();
