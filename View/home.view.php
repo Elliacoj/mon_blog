@@ -1,4 +1,4 @@
-<?php if(isset($_SESSION['role']) && $_SESSION['role'] = "Administrateur") {?>
+<?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Administrateur") {?>
         <div id="buttonAdmin">
             <a href="../index.php?controller=articles&action=new"><button>Nouvelle article</button></a>
             <a href="../index.php?controller=articles&action=update"><button>Modifier un article</button></a>
