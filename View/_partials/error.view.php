@@ -45,4 +45,9 @@ if(isset($var['error'])) {
         <div class="errorGreen">Article bien supprimé</div>
         <?php
     }
+    elseif($var['error'] == 9) {
+        ?>
+        <div class="errorRed">Vous devez être connecté pour envoyer un message</div>
+        <?php
+    }
 }

@@ -17,10 +17,11 @@ class CommentaryController
      * Poster article page and add commentary into table commentary
      */
     public function add() {
-        if(isset($_POST['comment'])) {
+        $article = ArticleManager::getManager()->get($_GET['article']);
+
+        if(isset($_POST['comment'], $_SESSION['id'])) {
             $comment = htmlentities($_POST['comment']);
             $commentary = new Commentary();
-            $article = ArticleManager::getManager()->get($_GET['article']);
             $user = UserManager::getManager()->getById($_SESSION['id']);
 
             $commentary->setContent($comment)->setArticleFk($article)->setUserFk($user);
@@ -32,6 +33,14 @@ class CommentaryController
                     "comment" => $comment
                 ]);
             }
+        }
+        else {
+            $comment = CommentaryManager::getManager()->getAll($article->getId());
+            $this->render('article', 'Article', [
+                "article" => $article,
+                "comment" => $comment,
+                "error" => "9"
+            ]);
         }
     }
 

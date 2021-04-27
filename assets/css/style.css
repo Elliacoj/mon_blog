@@ -138,6 +138,7 @@ h2 {
     font-weight: bold;
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
     justify-content: center;
     align-items: center;
 }
