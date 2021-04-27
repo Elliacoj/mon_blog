@@ -34,6 +34,20 @@ if(isset($_GET['controller'])) {
                     case 'new' :
                         $controller->addArticle();
                         break;
+                    case 'read':
+                        $controller->readArticle($_GET['article']);
+                        break;
+                    case 'readAll':
+                        $controller->articles();
+                        break;
+                    case 'update':
+                        if(isset($_GET['article'])) {
+                            $controller->updateArticle($_GET['article']);
+                        }
+                        else {
+                            $controller->updateArticle();
+                        }
+                        break;
                     default:
                         break;
                 }

@@ -73,7 +73,7 @@ body {
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
-    background-color: #BCEDF6;
+    background-color: #d00016;
     margin: 5% auto;
     box-shadow: 3px 3px 3px darkgray;
 }
@@ -87,6 +87,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.formUser form div label, .formUser h2 {
+    color: white !important;
 }
 
 .formUser form div label, .articleForm form div label {
@@ -162,14 +166,19 @@ h1 {
     color: #320E3B;
     text-align: center;
     margin-top: 3%;
+    text-decoration-line: underline;
 }
 
 .articleHome {
-    width: 70%;
+    width: 100%;
     border: 2px solid #320E3B;
     border-radius: 10px;
-    margin: 2% auto 0 auto;
     background-color: #d00016;
+    box-shadow: 5px 5px 3px darkgray;
+}
+
+.articleHome:last-child {
+    margin-bottom: 2%;
 }
 
 .articleHome h3, .articleHome p {
@@ -214,4 +223,42 @@ a {
 
 .articleForm form div input {
     width: 40%;
+}
+
+.articleDiv {
+    width: 70%;
+    margin: 2% auto 0 auto;
+}
+
+article {
+    width: 70%;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: white;
+    box-shadow: -3px -3px 3px darkgray;
+}
+
+article h2 {
+    font-size: 5rem;
+}
+
+article h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 2%;
+}
+
+article p {
+    width: 100%;
+    font-size: 2rem;
+    margin-top: 2%;
+    text-align: justify;
+}
+
+article span {
+    display: block;
+    text-align: right;
+    width: 100%;
+    margin-top: 3%;
 }

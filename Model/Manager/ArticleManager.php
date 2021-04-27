@@ -68,7 +68,7 @@ class ArticleManager {
      * @return bool
      */
     public function update(Article $article): bool {
-        $request = DB::getInstance()->prepare("UPDATE article SET content = :content, title = :tile, subTitle = :subTitle, resume = :resume WHERE id = :id");
+        $request = DB::getInstance()->prepare("UPDATE article SET content = :content, title = :title, subTitle = :subTitle, resume = :resume WHERE id = :id");
         $request->bindValue(':content', $article->getContent());
         $request->bindValue(':title', $article->getTitle());
         $request->bindValue(':subTitle', $article->getSubTitle());

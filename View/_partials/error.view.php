@@ -35,4 +35,9 @@ if(isset($var['error'])) {
         <div class="errorGreen">Article bien créé</div>
         <?php
     }
+    elseif($var['error'] == 7) {
+        ?>
+        <div class="errorGreen">Article bien mis à jour</div>
+        <?php
+    }
 }

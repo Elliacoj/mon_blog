@@ -2,7 +2,7 @@
     <div id="time"></div>
     <div>
         <a href="../../index.php"><button>Accueil</button></a>
-        <a href="../../index.php"><button>Liste des articles</button></a>
+        <a href="../../index.php?controller=articles&action=readAll"><button>Liste des articles</button></a>
     </div>
 
     <div><img src="../../_doc/logo.png" alt="logo"></div>

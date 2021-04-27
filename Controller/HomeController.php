@@ -16,7 +16,7 @@ class HomeController {
     public function homePage(?int $error = null) {
         $articles = array_reverse(ArticleManager::getManager()->getAll());
         if(count($articles) > 3) {
-            $articles = array_slice($articles, 2);
+            $articles = array_slice($articles, 0, 3);
         }
 
         $this->render('home', 'Ma home page', [
