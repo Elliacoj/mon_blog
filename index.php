@@ -63,6 +63,9 @@ if(isset($_GET['controller'])) {
                     case 'create':
                         $controller->create();
                         break;
+                    case 'logout':
+                        $controller->logout();
+                        break;
                 }
             }
             break;

@@ -17,16 +17,16 @@ class UserManager {
      * @return User
      */
     public function getById(int $id): User {
-        $user = new User();
+        $user = null;
         $request = DB::getInstance()->prepare("SELECT id, username FROM user WHERE id = :user_fk");
         $request->bindValue(':user_fk', $id);
         $result = $request->execute();
+
         if($result) {
             $user_data = $request->fetch();
             if($user_data) {
-                $user->setId($user_data['id']);
-                $user->setPassword('');
-                $user->setUsername($user_data['username']);
+                $role = RoleManager::getManager()->get($user_data['role_fk']);
+                $user = new User($user_data['username'], $user_data['password'], $user_data['id'], $user_data['mail'], $role);
             }
         }
 
@@ -57,7 +57,7 @@ class UserManager {
 
         $request->bindValue(":username", $user->getUsername());
         $request->bindValue(":mail", $user->getMail());
-        $request->bindValue(":password", $user->getPassword());
+        $request->bindValue(":password", password_hash($user->getPassword(), PASSWORD_BCRYPT));
         $request->bindValue(":role", $user->getRole()->getId());
 
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;

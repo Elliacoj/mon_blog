@@ -13,7 +13,32 @@ class UserController {
 
     use RenderViewTrait;
 
+    /**
+     * Poster login page and create sessions (id, username and role) if the information is correct
+     */
     public function login() {
+        if(isset($_POST['mail'], $_POST['password'])) {
+            $user_data = UserManager::getManager()->log($_POST['mail']);
+            if($user_data != null) {
+                if(password_verify($_POST['password'], $user_data->getPassword())) {
+                    $_SESSION['id'] = $user_data->getId();
+                    $_SESSION['username'] = $user_data->getUsername();
+                    $_SESSION['role'] = $user_data->getRole()->getName();
+
+                    $this->render('home', 'Home');
+                }
+                else {
+                    $this->render('login', 'Connexion', [
+                        'error' => "5",
+                    ]);
+                }
+            }
+            else {
+                $this->render('login', 'Connexion', [
+                    'error' => "4",
+                ]);
+            }
+        }
         $this->render('login', 'Connexion');
     }
 
@@ -27,24 +52,43 @@ class UserController {
             $mail = DB::sanitizeString($_POST['mail']);
 
             if(!DB::checkPassword($password)) {
-                $this->render('newUser', 'Création de compte',null, "?controller=user&action=create&error=1" );
+                $this->render('newUser', 'Création de compte', [
+                    'error' => "1",
+                ]);
             }
             elseif(UserManager::getManager()->log($mail) != null) {
-                $this->render('newUser', 'Création de compte',null, "?controller=user&action=create&error=3" );
+                $this->render('newUser', 'Création de compte', [
+                    'error' => "2",
+                ]);
             }
             else {
-                $user = new User(null, $username, $password, $mail, new Role(2, "Utilisateur"));
+                $user = new User($username, $password,null , $mail, new Role(2, "Utilisateur"));
                 $add = UserManager::getManager()->add($user);
 
                 if($add) {
-                    $this->render('home', 'Home',null, "?error=0" );
+                    $this->render('home', 'Home', [
+                        'error' => "0",
+                    ]);
                 }
                 else {
-                    $this->render('newUser', 'Création de compte',null, "?controller=user&action=create&error=2" );
+                    $this->render('newUser', 'Création de compte', [
+                        'error' => "3",
+                    ]);
                 }
             }
         }
 
         $this->render('newUser', 'Création de compte');
+    }
+
+    public function logout() {
+        if(isset($_SESSION['id'], $_SESSION['username'], $_SESSION['role'])) {
+            $_SESSION = array();
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+            session_destroy();
+
+            $this->render('home', 'Home');
+        }
     }
 }

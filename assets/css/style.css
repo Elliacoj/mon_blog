@@ -58,7 +58,7 @@ body {
     font-size: 3rem;
     display: flex;
     align-items: center;
-    color: #320E3B;
+    color: #BCEDF6;
     font-weight: bold;
 }
 
@@ -121,4 +121,33 @@ body {
 
 .sendForm {
     margin-bottom: 2%;
+}
+
+.errorGreen, .errorRed {
+    width: 100%;
+    height: 50px;
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorGreen {
+    background-color: greenyellow;
+}
+
+.errorRed {
+    background-color: crimson;
+}
+
+#welcome {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #BCEDF6;
 }
