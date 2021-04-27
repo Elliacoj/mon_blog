@@ -44,6 +44,9 @@ class CommentaryController
         }
     }
 
+    /**
+     * Poster article page and delete a commentary
+     */
     public function delete() {
         if(isset($_GET['comment'])) {
             $comment = CommentaryManager::getManager()->get($_GET['comment']);

@@ -81,6 +81,9 @@ class UserController {
         $this->render('newUser', 'Création de compte');
     }
 
+    /**
+     * Poster home page and disconnect user
+     */
     public function logout() {
         if(isset($_SESSION['id'], $_SESSION['username'], $_SESSION['role'])) {
             $_SESSION = array();

@@ -36,12 +36,15 @@ if(isset($_GET['controller'])) {
                     case 'new' :
                         $controller->addArticle();
                         break;
+
                     case 'read':
                         $controller->readArticle($_GET['article']);
                         break;
+
                     case 'readAll':
                         $controller->articles();
                         break;
+
                     case 'update':
                         if(isset($_GET['article'])) {
                             $controller->updateArticle($_GET['article']);
@@ -50,9 +53,11 @@ if(isset($_GET['controller'])) {
                             $controller->updateArticle();
                         }
                         break;
+
                     case 'delete':
                         $controller->deleteArticle();
                         break;
+
                     default:
                         break;
                 }
@@ -60,8 +65,8 @@ if(isset($_GET['controller'])) {
             else {
                 $controller->articles();
             }
-
             break;
+
         case 'user':
             $controller = new UserController();
 
@@ -70,17 +75,21 @@ if(isset($_GET['controller'])) {
                     case 'login':
                         $controller->login();
                         break;
+
                     case 'create':
                         $controller->create();
                         break;
+
                     case 'logout':
                         $controller->logout();
                         break;
+
                     default:
                         break;
                 }
             }
             break;
+
         case 'commentary':
             $controller = new CommentaryController();
 
@@ -89,16 +98,18 @@ if(isset($_GET['controller'])) {
                     case 'add':
                         $controller->add();
                         break;
+
                     case 'delete':
                         $controller->delete();
                         break;
+
                     default:
                         break;
                 }
             }
             break;
-        default:
 
+        default:
             break;
     }
 }

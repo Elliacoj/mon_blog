@@ -102,6 +102,9 @@ class ArticleController {
         }
     }
 
+    /**
+     * Poster home page and delete an article
+     */
     public function deleteArticle() {
         $controller = new HomeController();
 

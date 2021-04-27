@@ -12,6 +12,9 @@ timer.innerHTML = hours + ":" + minutes + ":" + seconds;
 
 time();
 
+/**
+ * Timer for menu
+ */
 function time() {
     seconds++
     if(seconds >= 60) {

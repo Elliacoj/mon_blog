@@ -67,6 +67,7 @@ class Article {
     /**
      * Set the title of Article
      * @param string|null $title
+     * @return Article
      */
     public function setTitle(?string $title): Article
     {
@@ -86,6 +87,7 @@ class Article {
     /**
      * Set the sub title of Article
      * @param string|null $subTitle
+     * @return Article
      */
     public function setSubTitle(?string $subTitle): Article
     {
@@ -105,6 +107,7 @@ class Article {
     /**
      * Set the resume of Article
      * @param string|null $resume
+     * @return Article
      */
     public function setResume(?string $resume): Article
     {
@@ -124,6 +127,7 @@ class Article {
     /**
      * Set the date of Article
      * @param string|null $date
+     * @return Article
      */
     public function setDate(?string $date): Article
     {

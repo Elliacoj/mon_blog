@@ -52,6 +52,11 @@ class UserManager {
         return $user;
     }
 
+    /**
+     * Add an user into table user
+     * @param User $user
+     * @return bool
+     */
     public function add(User $user): bool {
         $request = DB::getInstance()->prepare("INSERT INTO user (username, mail, password, role_fk) VALUES (:username, :mail, :password, :role)");
 
