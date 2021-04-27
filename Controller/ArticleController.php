@@ -4,8 +4,9 @@ namespace Controller;
 
 use Controller\Traits\RenderViewTrait;
 use Model\Entity\Article;
+use Model\Entity\Commentary;
 use Model\Manager\ArticleManager;
-use Model\User\UserManager;
+use Model\Manager\CommentaryManager;
 
 class ArticleController {
 
@@ -53,8 +54,10 @@ class ArticleController {
      */
     public function readArticle($id) {
         $article = ArticleManager::getManager()->get($id);
+        $comment = CommentaryManager::getManager()->getAll($article->getId());
         $this->render('article', 'Article', [
-            "article" => $article
+            "article" => $article,
+            "comment" => $comment
         ]);
     }
 

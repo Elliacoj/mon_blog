@@ -3,9 +3,9 @@
 
 namespace Model\Manager;
 
+use Model\Manager\Traits\ManagerTrait;
 use Model\DB;
 use Model\Entity\Commentary;
-use Model\Manager\Traits\ManagerTrait;
 use Model\User\UserManager;
 
 class CommentaryManager
@@ -32,6 +32,26 @@ class CommentaryManager
             }
         }
         return $commentaries;
+    }
+
+    /**
+     * Get a commentary by id
+     * @param $id
+     * @return Commentary|null
+     */
+    public function get($id): ?Commentary {
+        $request = DB::getInstance()->prepare("SELECT * FROM commentary WHERE id = :id");
+        $request->bindValue(':id', $id);
+        $result = $request->execute();
+        $comment = null;
+
+        if($result && $data = $request->fetch()) {
+            $user = UserManager::getManager()->getById($data['user_fk']);
+            $article = ArticleManager::getManager()->get($data['article_fk']);
+            $comment = new Commentary($data['id'], $data['content'], $user, $article, $data['date'], $data['edit']);
+        }
+
+        return $comment;
     }
 
     /** Add a commentary into the table commentary

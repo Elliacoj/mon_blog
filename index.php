@@ -18,7 +18,9 @@ require_once './Model/Manager/RoleManager.php';
 require_once './Controller/HomeController.php';
 require_once './Controller/ArticleController.php';
 require_once './Controller/UserController.php';
+require_once './Controller/CommentaryController.php';
 
+use Controller\CommentaryController;
 use Controller\HomeController;
 use Controller\ArticleController;
 use Controller\UserController;
@@ -73,6 +75,24 @@ if(isset($_GET['controller'])) {
                         break;
                     case 'logout':
                         $controller->logout();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            break;
+        case 'commentary':
+            $controller = new CommentaryController();
+
+            if(isset($_GET['action'])) {
+                switch ($_GET['action']) {
+                    case 'add':
+                        $controller->add();
+                        break;
+                    case 'delete':
+                        $controller->delete();
+                        break;
+                    default:
                         break;
                 }
             }

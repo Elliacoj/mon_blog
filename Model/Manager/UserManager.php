@@ -16,9 +16,9 @@ class UserManager {
      * @param int $id
      * @return User
      */
-    public function getById(int $id): User {
+    public function getById(int $id): ?User {
         $user = null;
-        $request = DB::getInstance()->prepare("SELECT id, username FROM user WHERE id = :user_fk");
+        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE id = :user_fk");
         $request->bindValue(':user_fk', $id);
         $result = $request->execute();
 

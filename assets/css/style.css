@@ -230,7 +230,7 @@ a {
     margin: 2% auto 0 auto;
 }
 
-article {
+article, #comment {
     width: 70%;
     margin: 2% auto;
     padding: 1%;
@@ -268,5 +268,65 @@ article span {
 }
 
 #supButton input {
+    margin-top: 0;
     width: 100%;
+}
+
+#comment textarea {
+    display: block;
+    width: 80%;
+    margin-top: 2%;
+    padding: 1%;
+}
+
+#comment form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#comment input {
+    width: 80%;
+}
+
+.comment {
+    width: 80%;
+    margin: 2% auto 0 auto;
+    box-shadow: -2px 2px 2px darkgray;
+    border: 1px solid darkgray;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comment span {
+    font-size: 1.5rem;
+    height: auto;
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 15%;
+}
+
+.comment span:first-child {
+    border-right: 1px solid darkgray;
+}
+
+.comment .commentText {
+    width: 60% !important;
+}
+
+.buttonComment {
+    width: 10%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttonComment a {
+    width: 100%;
+}
+
+.buttonComment button {
+    width: 100%;
+    height: 100%;
 }
