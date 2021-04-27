@@ -24,22 +24,24 @@ class ArticleController {
     }
 
     /**
-     * Ajoute un nouvel article.
+     * Poster create article page and add an article into table article
      */
-    public function addArticle($fields){
-        if(isset($fields['content'], $fields['user'])) {
-            // Alors ca veut dure que le formulaire a été envoyé.
-            $userManager = new UserManager();
+    public function addArticle(){
+        if(isset($_POST['content'], $_POST['subTitle'], $_POST['title'], $_POST['resume'])) {
+
             $articleManager = new ArticleManager();
 
-            $content = htmlentities($fields['content']);
-            $user_fk = intval($fields['user']);
+            $content = htmlentities($_POST['content']);
+            $title = htmlentities($_POST['title']);
+            $subTitle = htmlentities($_POST['subTitle']);
+            $resume = htmlentities($_POST['resume']);
 
-            $user = $userManager->getById($user_fk);
-            if($user->getId()) {
-                $article = new Article($content, $user);
-                $articleManager->add($article);
-            }
+            $article = new Article();
+            $article->setContent($content)->setTitle($title)->setSubTitle($subTitle)->setResume($resume);
+            $articleManager->add($article);
+
+            $controller = new HomeController();
+            $controller->homePage(6);
         }
 
         $this->render('add.article', 'Ajouter un article');

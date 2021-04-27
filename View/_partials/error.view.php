@@ -30,4 +30,9 @@ if(isset($var['error'])) {
         <div class="errorRed">Mot de passe incorrect</div>
         <?php
     }
+    elseif($var['error'] == 6) {
+        ?>
+        <div class="errorGreen">Article bien créé</div>
+        <?php
+    }
 }

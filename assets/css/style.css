@@ -10,7 +10,7 @@ html {
 
 body {
     width: 100%;
-    background-color: #e2f5fc;
+    background-color: #ededed;
 }
 
 #menu {
@@ -24,12 +24,16 @@ body {
     align-items: center;
     justify-content: space-around;
     box-shadow: 2px 2px 2px darkgray;
-    background-color: #727272;
+    background-color: #2aabda;
 }
 
 #menu div {
     width: 20%;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 #menu div img {
@@ -37,7 +41,7 @@ body {
     height: 100%;
 }
 
-#menu a button {
+#menu a button, #buttonAdmin button {
     width: 120px;
     height: 50px;
     color: #320E3B;
@@ -45,8 +49,8 @@ body {
     border-radius: 10px;
 }
 
-#menu a button:hover {
-    background-color: #BCEDF6;
+#menu a button:hover, #buttonAdmin button:hover {
+    color: #d00016;
 }
 
 #menu a button:nth-child(0) {
@@ -58,7 +62,7 @@ body {
     font-size: 3rem;
     display: flex;
     align-items: center;
-    color: #BCEDF6;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -74,18 +78,18 @@ body {
     box-shadow: 3px 3px 3px darkgray;
 }
 
-.formUser form {
+.formUser form, .articleForm form {
     width: 100%;
 }
 
-.formUser form div {
+.formUser form div, .articleForm, .articleForm form div {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.formUser form div label {
+.formUser form div label, .articleForm form div label {
     display: block;
     width: 100%;
     text-align: center;
@@ -95,7 +99,7 @@ body {
     margin-top: 2%;
 }
 
-.formUser form div input {
+.formUser form div input, .articleForm form div input {
     width: 50%;
     height: 30px;
     text-align: center;
@@ -103,7 +107,7 @@ body {
     margin-top: 2%;
 }
 
-.formUser h2 {
+h2 {
     margin-top: 2%;
     width: 100%;
     text-align: center;
@@ -149,5 +153,65 @@ body {
     align-items: center;
     font-weight: bold;
     font-size: 2rem;
-    color: #BCEDF6;
+    color: #ffffff;
+}
+
+h1 {
+    width: 100%;
+    font-size: 4rem;
+    color: #320E3B;
+    text-align: center;
+    margin-top: 3%;
+}
+
+.articleHome {
+    width: 70%;
+    border: 2px solid #320E3B;
+    border-radius: 10px;
+    margin: 2% auto 0 auto;
+    background-color: #d00016;
+}
+
+.articleHome h3, .articleHome p {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.articleHome h3 {
+    font-size: 2.5rem;
+    margin-top: 2%;
+    text-decoration-line: underline;
+}
+
+.articleHome p {
+    font-size: 1.5rem;
+    margin: 2% 0;
+}
+
+#buttonAdmin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 15%;
+    margin: 1% 0 0 0;
+    justify-content: space-evenly;
+}
+
+a {
+    text-decoration: none;
+}
+
+.articleForm form div textarea {
+    width: 40%;
+    padding: 1%;
+    margin-top: 2%;
+}
+
+.articleForm form div #content {
+    height: 200px;
+}
+
+.articleForm form div input {
+    width: 40%;
 }

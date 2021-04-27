@@ -25,7 +25,8 @@ class UserController {
                     $_SESSION['username'] = $user_data->getUsername();
                     $_SESSION['role'] = $user_data->getRole()->getName();
 
-                    $this->render('home', 'Home');
+                    $controller = new HomeController();
+                    $controller->homePage();
                 }
                 else {
                     $this->render('login', 'Connexion', [
@@ -66,9 +67,8 @@ class UserController {
                 $add = UserManager::getManager()->add($user);
 
                 if($add) {
-                    $this->render('home', 'Home', [
-                        'error' => "0",
-                    ]);
+                    $controller = new HomeController();
+                    $controller->homePage("0");
                 }
                 else {
                     $this->render('newUser', 'Création de compte', [
@@ -88,7 +88,8 @@ class UserController {
             setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
             session_destroy();
 
-            $this->render('home', 'Home');
+            $controller = new HomeController();
+            $controller->homePage();
         }
     }
 }
