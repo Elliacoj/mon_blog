@@ -330,3 +330,51 @@ article span {
     width: 100%;
     height: 100%;
 }
+
+@media screen and (max-width:1220px) {
+    #menu a button, #buttonAdmin button {
+        width: 80px;
+        font-size: 1rem;
+    }
+
+    .articleForm form div textarea {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 910px) {
+    article, #comment, .articleDiv {
+        width: 100%;
+        margin-top: 0;
+    }
+    html {
+        font-size: 50%;
+    }
+
+    #menu a button, #buttonAdmin button {
+        font-size: 1.5rem;
+    }
+
+    #time {
+        display: none !important;
+    }
+
+    #menu div {
+        width: 33%;
+    }
+
+    .formUser {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 40%;
+    }
+
+    #menu a button, #buttonAdmin button {
+        width: 60px;
+        font-size: 1.5rem;
+    }
+}
