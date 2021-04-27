@@ -262,3 +262,11 @@ article span {
     width: 100%;
     margin-top: 3%;
 }
+
+#supButton {
+    width: 40%;
+}
+
+#supButton input {
+    width: 100%;
+}

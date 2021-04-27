@@ -40,4 +40,9 @@ if(isset($var['error'])) {
         <div class="errorGreen">Article bien mis à jour</div>
         <?php
     }
+    elseif($var['error'] == 8) {
+        ?>
+        <div class="errorGreen">Article bien supprimé</div>
+        <?php
+    }
 }

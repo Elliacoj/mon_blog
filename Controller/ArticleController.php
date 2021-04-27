@@ -58,6 +58,10 @@ class ArticleController {
         ]);
     }
 
+    /**
+     * Poster update article or articles page and update article choice
+     * @param int|null $id
+     */
     public function updateArticle(?int $id = null) {
         if(isset($_POST['content'], $_POST['subTitle'], $_POST['title'], $_POST['resume'])) {
             $articleManager = new ArticleManager();
@@ -92,6 +96,23 @@ class ArticleController {
             $this->render('update.articles', 'Modifier un article', [
                 'articles' => $articles,
             ]);
+        }
+    }
+
+    public function deleteArticle() {
+        $controller = new HomeController();
+
+        if(isset($_GET['article'])) {
+            $article = ArticleManager::getManager()->get($_GET['article']);
+            if(ArticleManager::getManager()->delete($article)) {
+                $controller->homePage(8);
+            }
+            else {
+                $controller->homePage(3);
+            }
+        }
+        else {
+            $controller->homePage(3);
         }
     }
 }

@@ -48,6 +48,9 @@ if(isset($_GET['controller'])) {
                             $controller->updateArticle();
                         }
                         break;
+                    case 'delete':
+                        $controller->deleteArticle();
+                        break;
                     default:
                         break;
                 }

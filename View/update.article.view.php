@@ -24,5 +24,9 @@
         <div>
             <input type="submit" class="sendForm">
         </div>
+
+        <div>
+            <a href="../index.php?controller=articles&action=delete&article=<?= $var['article']->getId()?>" id="supButton"><input type="button" value="Supprimer" class="sendForm"></a>
+        </div>
     </form>
 </div>
